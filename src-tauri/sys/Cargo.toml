@@ -1,0 +1,31 @@
+[package]
+name = "bridge-sys"
+version = "0.3.0"
+edition = "2021"
+description = "Bridge OS services: launching, clipboard, stats, icons, URL metadata, Start-menu apps, file drops."
+
+[features]
+# `dragdrop::install` (needs Tauri + WebView2). The app turns it on through `[workspace.dependencies]`.
+# Off for `cargo test -p bridge-sys`: a test exe that links Tauri imports comctl32 v6's TaskDialogIndirect, has no
+# app manifest, and dies with STATUS_ENTRYPOINT_NOT_FOUND before any test runs.
+webview = ["dep:tauri", "dep:webview2-com"]
+
+[dependencies]
+bridge-core.workspace = true
+tauri = { workspace = true, optional = true }
+serde.workspace = true
+serde_json.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+futures.workspace = true
+sha1.workspace = true
+chrono.workspace = true
+clipboard-win.workspace = true
+png.workspace = true
+url.workspace = true
+webview2-com = { workspace = true, optional = true }
+windows.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+tiny_http.workspace = true

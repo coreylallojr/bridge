@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "ES2022", "module": "ESNext", "moduleResolution": "Bundler", "strict": true, "skipLibCheck": true,
+    "esModuleInterop": true, "resolveJsonModule": true, "types": ["node"], "composite": true, "noEmit": true,
+    "baseUrl": ".", "paths": { "@shared/*": ["src/shared/*"] }
+  },
+  "include": ["vite.config.ts", "vitest.config.ts"]
+}

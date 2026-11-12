@@ -1,0 +1,43 @@
+{
+  "name": "bridge",
+  "productName": "Bridge",
+  "version": "0.3.0",
+  "private": true,
+  "description": "A personal command center for Windows",
+  "author": "Corey Lallo (https://github.com/coreylallojr)",
+  "license": "SEE LICENSE IN LICENSE.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coreylallojr/bridge"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "node scripts/start.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.node.json && tsc --noEmit -p tsconfig.web.json",
+    "test": "vitest run",
+    "rust": "node scripts/rust.mjs",
+    "rust:test": "node scripts/rust.mjs test --workspace",
+    "tauri:build": "vite build && node scripts/rust.mjs build --release",
+    "test:e2e": "node --test --test-concurrency=1 --test-reporter=spec tests/e2e/shell.e2e.mjs",
+    "shot": "node scripts/shot.mjs",
+    "bench": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/bench.ps1 -Label tauri -Exe src-tauri/target/release/bridge.exe -SizePaths src-tauri/target/release/bridge.exe",
+    "check:public": "node scripts/check-public.mjs"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "three": "^0.187.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.187.0",
+    "@vitejs/plugin-react": "^6.2.1",
+    "playwright-core": "^1.64.1",
+    "typescript": "~5.9",
+    "vite": "^8.3.5",
+    "vitest": "^5.1.0"
+  }
+}

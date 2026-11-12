@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "groups": [
+    { "id": "g-work", "name": "Work" },
+    { "id": "g-tools", "name": "Tools" }
+  ],
+  "tiles": [
+    { "id": "t-learn", "groupId": "g-work", "name": "Microsoft Learn", "kind": "url", "target": "https://learn.microsoft.com/", "subtitle": "learn.microsoft.com", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-docs", "groupId": "g-work", "name": "Documents", "kind": "folder", "target": "%USERPROFILE%\\Documents", "subtitle": "Folder", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-calc", "groupId": "g-tools", "name": "Calculator", "kind": "app", "target": "shell:AppsFolder\\Microsoft.WindowsCalculator_8wekyb3d8bbwe!App", "keyword": "calc", "subtitle": "App", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-notepad", "groupId": "g-tools", "name": "Notepad", "kind": "app", "target": "shell:AppsFolder\\Microsoft.WindowsNotepad_8wekyb3d8bbwe!App", "subtitle": "App", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 }
+  ],
+  "routines": [
+    { "id": "r-start", "name": "Start my day", "steps": [] }
+  ],
+  "settings": { "hotkey": "Alt+Space", "mode": "auto", "pinnedDisplayId": null, "calmMotion": false, "theme": "command", "glass": 60, "density": "comfortable", "fontScale": 100, "fps": 30, "quality": "medium", "widgets": ["routine", "recent", "pc"] }
+}

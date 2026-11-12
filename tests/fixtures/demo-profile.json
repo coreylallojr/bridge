@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "groups": [
+    { "id": "g-work", "name": "Work" },
+    { "id": "g-projects", "name": "Projects" },
+    { "id": "g-tools", "name": "Tools" }
+  ],
+  "tiles": [
+    { "id": "t-board", "groupId": "g-work", "name": "Team board", "kind": "url", "target": "https://example.com/board", "keyword": "board", "subtitle": "example.com", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 3, "lastOpenedAt": "2026-11-02T08:40:00.000Z" },
+    { "id": "t-wiki", "groupId": "g-work", "name": "Team wiki", "kind": "url", "target": "https://example.org/wiki", "subtitle": "example.org", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 1, "lastOpenedAt": "2026-11-02T08:10:00.000Z" },
+    { "id": "t-reports", "groupId": "g-work", "name": "Weekly reports", "kind": "url", "target": "https://example.net/reports", "subtitle": "example.net", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-docs", "groupId": "g-work", "name": "Documents", "kind": "folder", "target": "%USERPROFILE%\\Documents", "subtitle": "Folder", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-notes", "groupId": "g-projects", "name": "Meeting notes", "kind": "file", "target": "C:\\Windows\\win.ini", "subtitle": "notes.txt", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 },
+    { "id": "t-calc", "groupId": "g-tools", "name": "Calculator", "kind": "app", "target": "shell:AppsFolder\\Microsoft.WindowsCalculator_8wekyb3d8bbwe!App", "keyword": "calc", "subtitle": "App", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 2, "lastOpenedAt": "2026-11-02T07:55:00.000Z" },
+    { "id": "t-notepad", "groupId": "g-tools", "name": "Notepad", "kind": "app", "target": "shell:AppsFolder\\Microsoft.WindowsNotepad_8wekyb3d8bbwe!App", "subtitle": "App", "createdAt": "2026-11-02T00:00:00.000Z", "openCount": 0 }
+  ],
+  "routines": [
+    { "id": "r-start", "name": "Start my day", "steps": [{ "tileId": "t-notepad" }, { "tileId": "t-calc" }, { "tileId": "t-board" }] }
+  ],
+  "settings": { "hotkey": "Alt+Space", "mode": "auto", "pinnedDisplayId": null, "calmMotion": false, "theme": "command", "glass": 60, "density": "comfortable", "fontScale": 100, "fps": 30, "quality": "medium", "widgets": ["routine", "recent", "pc"] }
+}

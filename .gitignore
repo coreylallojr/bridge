@@ -1,0 +1,16 @@
+node_modules/
+dist/
+out/
+release/
+*.log
+.env*
+# personal data never lives in the repo (it's in %APPDATA%\Bridge)
+profile.json
+voice-cache/
+previews/
+out-*/
+*.tsbuildinfo
+src-tauri/target/
+src-tauri/gen/
+docs/perf-results.jsonl
+src-tauri/target-core/

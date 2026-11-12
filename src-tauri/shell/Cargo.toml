@@ -1,0 +1,21 @@
+[package]
+name = "bridge-shell"
+version = "0.3.0"
+edition = "2021"
+description = "Bridge shell: window modes, z-order, displays, tray, hotkey, single instance, CLI pipe server."
+
+[dependencies]
+bridge-core.workspace = true
+tauri.workspace = true
+tauri-plugin-global-shortcut.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tokio.workspace = true
+futures.workspace = true
+windows.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true
+
+[build-dependencies]
+embed-resource.workspace = true
