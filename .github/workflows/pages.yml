@@ -1,0 +1,57 @@
+name: pages
+
+# Builds the landing page (site/, which imports the app's reactor and themes from src/renderer) and publishes it.
+# One-time setup: Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
+on:
+  push:
+    branches: [main]
+    paths: ['site/**', 'src/renderer/reactor/**', 'src/renderer/theme.ts', 'package-lock.json', '.github/workflows/pages.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Is GitHub Pages enabled?
+        id: enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh api "repos/${GITHUB_REPOSITORY}/pages" --silent 2>/dev/null; then echo "on=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "on=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=GitHub Pages is not enabled::Settings -> Pages -> Source: GitHub Actions, then re-run this workflow."
+          fi
+      - uses: actions/checkout@v5
+        if: steps.enabled.outputs.on == 'true'
+      - uses: actions/setup-node@v5
+        if: steps.enabled.outputs.on == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - name: Build the site
+        if: steps.enabled.outputs.on == 'true'
+        run: |
+          npm ci --ignore-scripts
+          npx vite build --config site/vite.config.ts
+      - uses: actions/configure-pages@v5
+        if: steps.enabled.outputs.on == 'true'
+      - uses: actions/upload-pages-artifact@v3
+        if: steps.enabled.outputs.on == 'true'
+        with:
+          path: site/dist
+      - id: deploy
+        if: steps.enabled.outputs.on == 'true'
+        uses: actions/deploy-pages@v4

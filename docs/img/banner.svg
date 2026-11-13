@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400" role="img" aria-label="Bridge: a personal command center for Windows, with an animated arc reactor. Tauri 2, Rust, local only.">
+  <style>
+    .f { font-family: Bahnschrift, 'Segoe UI', 'Arial Narrow', Arial, sans-serif; }
+    .m { font-family: 'Cascadia Mono', Consolas, 'Courier New', monospace; }
+    @keyframes spin { to { transform: rotate(360deg) } }
+    @keyframes spinr { to { transform: rotate(-360deg) } }
+    @keyframes flicker { 0%, 100% { opacity: 1 } 7% { opacity: .8 } 8% { opacity: 1 } 32% { opacity: .5 } 33% { opacity: 1 } 34% { opacity: .7 } 35% { opacity: 1 } 79% { opacity: .35 } 80% { opacity: .95 } 81% { opacity: .6 } 82% { opacity: 1 } }
+    @keyframes coil { 0%, 100% { fill-opacity: .18 } 40% { fill-opacity: .55 } 41% { fill-opacity: .08 } 43% { fill-opacity: .7 } 70% { fill-opacity: .25 } }
+    @keyframes breathe { 50% { transform: scale(1.1); opacity: .75 } }
+    @keyframes sweep { from { transform: translateY(-120px) } to { transform: translateY(420px) } }
+    @keyframes type { from { width: 0 } to { width: 640px } }
+    @keyframes caret { 50% { opacity: 0 } }
+    @keyframes chip { 0%, 100% { opacity: .55 } 50% { opacity: 1 } }
+    #reactor { animation: flicker 4.7s steps(1) infinite; }
+    #ticks { transform-origin: 250px 200px; animation: spinr 80s linear infinite; }
+    #dashA { transform-origin: 250px 200px; animation: spin 50s linear infinite; }
+    #dashB { transform-origin: 250px 200px; animation: spinr 20s linear infinite; }
+    #orbit1 { transform-origin: 250px 200px; animation: spin 9s linear infinite; }
+    #orbit2 { transform-origin: 250px 200px; animation: spinr 13s linear infinite; }
+    #halo { transform-origin: 250px 200px; animation: breathe 3.4s ease-in-out infinite; }
+    .c1 { animation: coil 3.1s steps(1) infinite; } .c2 { animation: coil 4.3s .7s steps(1) infinite; } .c3 { animation: coil 2.6s 1.3s steps(1) infinite; }
+    .c4 { animation: coil 5.2s .2s steps(1) infinite; } .c5 { animation: coil 3.7s 2.1s steps(1) infinite; }
+    #scanline { animation: sweep 6s linear infinite; }
+    #typed { animation: type 2.6s steps(38) .5s both; }
+    #caret { animation: caret 1s steps(1) infinite; }
+    .chip { animation: chip 2.4s ease-in-out infinite; } .chip.b { animation-delay: .8s; } .chip.c { animation-delay: 1.6s; }
+    @media (prefers-reduced-motion: reduce) { * { animation: none !important; } #typed { width: 640px; } }
+  </style>
+  <defs>
+    <radialGradient id="bg" cx=".2" cy=".5" r="1"><stop offset="0" stop-color="#0a2a36"/><stop offset=".55" stop-color="#04121A"/><stop offset="1" stop-color="#010507"/></radialGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#ffffff" stop-opacity=".95"/><stop offset=".22" stop-color="#9ff6fc" stop-opacity=".7"/><stop offset=".55" stop-color="#3FE0EE" stop-opacity=".22"/><stop offset="1" stop-color="#3FE0EE" stop-opacity="0"/></radialGradient>
+    <pattern id="hex" width="30" height="52" patternUnits="userSpaceOnUse"><path d="M15 0 L30 8.66 L30 25.98 L15 34.64 L0 25.98 L0 8.66 Z M15 34.64 V52" fill="none" stroke="#3FE0EE" stroke-opacity=".09" stroke-width="1"/></pattern>
+    <linearGradient id="scan" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FE0EE" stop-opacity="0"/><stop offset=".5" stop-color="#3FE0EE" stop-opacity=".09"/><stop offset="1" stop-color="#3FE0EE" stop-opacity="0"/></linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="big" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="9"/></filter>
+    <clipPath id="typeclip"><rect id="typed" x="470" y="214" width="0" height="34"/></clipPath>
+  </defs>
+
+  <rect width="1280" height="400" fill="url(#bg)"/>
+  <rect width="1280" height="400" fill="url(#hex)"/>
+  <rect id="scanline" x="0" y="0" width="1280" height="110" fill="url(#scan)"/>
+
+  <!-- HUD frame -->
+  <g fill="none" stroke="#3FE0EE" stroke-width="2" stroke-opacity=".7">
+    <path d="M20 46 V20 H46"/><path d="M1234 20 H1260 V46"/><path d="M20 354 V380 H46"/><path d="M1234 380 H1260 V354"/>
+  </g>
+  <text x="1256" y="38" text-anchor="end" class="m" font-size="11" fill="#6E9AA6" letter-spacing="3">J.A.R.V.I.S. INTERFACE // BRIDGE v0.3.0</text>
+
+  <!-- arc reactor -->
+  <g id="reactor">
+    <circle cx="250" cy="200" r="120" fill="#3FE0EE" opacity=".12" filter="url(#big)"/>
+    <circle id="halo" cx="250" cy="200" r="78" fill="url(#glow)"/>
+    <g id="ticks" stroke="#3FE0EE" stroke-opacity=".6" stroke-width="1">
+      <path d="M250 58 V70 M250 330 V342 M108 200 H120 M380 200 H392 M149.6 99.6 L158.1 108.1 M341.9 291.9 L350.4 300.4 M149.6 300.4 L158.1 291.9 M341.9 108.1 L350.4 99.6"/>
+      <path stroke-opacity=".35" d="M286.8 62.8 L284.2 72.5 M213.2 337.2 L215.8 327.5 M112.8 236.8 L122.5 234.2 M387.2 163.2 L377.5 165.8 M318.5 81.3 L313.5 90 M181.5 318.7 L186.5 310 M131.3 268.5 L140 263.5 M368.7 131.5 L360 136.5 M213.2 62.8 L215.8 72.5 M286.8 337.2 L284.2 327.5 M112.8 163.2 L122.5 165.8 M387.2 236.8 L377.5 234.2 M181.5 81.3 L186.5 90 M318.5 318.7 L313.5 310 M131.3 131.5 L140 136.5 M368.7 268.5 L360 263.5"/>
+    </g>
+    <circle id="dashA" cx="250" cy="200" r="118" fill="none" stroke="#3FE0EE" stroke-width="3" stroke-dasharray="3 6" stroke-opacity=".55"/>
+    <circle cx="250" cy="200" r="106" fill="none" stroke="#3FE0EE" stroke-width=".8" stroke-opacity=".5"/>
+    <!-- coils: ten segments around the ring -->
+    <g fill="#3FE0EE" stroke="#3FE0EE" stroke-width="1.2" filter="url(#soft)">
+      <rect class="c1" x="240" y="94" width="20" height="24" rx="2" transform="rotate(0 250 200)"/>
+      <rect class="c2" x="240" y="94" width="20" height="24" rx="2" transform="rotate(36 250 200)"/>
+      <rect class="c3" x="240" y="94" width="20" height="24" rx="2" transform="rotate(72 250 200)"/>
+      <rect class="c4" x="240" y="94" width="20" height="24" rx="2" transform="rotate(108 250 200)"/>
+      <rect class="c5" x="240" y="94" width="20" height="24" rx="2" transform="rotate(144 250 200)"/>
+      <rect class="c2" x="240" y="94" width="20" height="24" rx="2" transform="rotate(180 250 200)"/>
+      <rect class="c4" x="240" y="94" width="20" height="24" rx="2" transform="rotate(216 250 200)"/>
+      <rect class="c1" x="240" y="94" width="20" height="24" rx="2" transform="rotate(252 250 200)"/>
+      <rect class="c5" x="240" y="94" width="20" height="24" rx="2" transform="rotate(288 250 200)"/>
+      <rect class="c3" x="240" y="94" width="20" height="24" rx="2" transform="rotate(324 250 200)"/>
+    </g>
+    <circle cx="250" cy="200" r="72" fill="none" stroke="#9ff6fc" stroke-width="2.4" filter="url(#soft)"/>
+    <circle id="dashB" cx="250" cy="200" r="64" fill="none" stroke="#3FE0EE" stroke-width="1.4" stroke-dasharray="18 8 3 8" stroke-opacity=".8"/>
+    <!-- tilted orbit rings, like the app's three.js rings -->
+    <g id="orbit1"><ellipse cx="250" cy="200" rx="140" ry="44" fill="none" stroke="#1aa6d9" stroke-width="1.2" stroke-opacity=".6" transform="rotate(-24 250 200)"/></g>
+    <g id="orbit2"><ellipse cx="250" cy="200" rx="132" ry="30" fill="none" stroke="#5cecf7" stroke-width="1" stroke-opacity=".45" transform="rotate(38 250 200)"/></g>
+    <text x="250" y="210" text-anchor="middle" class="f" font-size="40" font-weight="300" fill="#ffffff" letter-spacing="1">09:41</text>
+    <text x="250" y="232" text-anchor="middle" class="m" font-size="10" fill="#3FE0EE" letter-spacing="4">MONDAY</text>
+  </g>
+
+  <!-- title -->
+  <text x="470" y="150" class="f" font-size="96" font-weight="200" fill="#ffffff" letter-spacing="34" filter="url(#soft)">BRIDGE</text>
+  <rect x="472" y="170" width="6" height="22" fill="#E2342D"/>
+  <text x="488" y="188" class="m" font-size="14" fill="#FFB547" letter-spacing="5">PERSONAL COMMAND CENTER</text>
+  <g clip-path="url(#typeclip)"><text x="472" y="238" class="f" font-size="24" fill="#D9F7FB">One click to everything. Your monitors, arranged.</text></g>
+  <rect id="caret" x="1004" y="219" width="11" height="24" fill="#3FE0EE"/>
+
+  <!-- status chips -->
+  <g class="m" font-size="12" letter-spacing="2">
+    <g class="chip"><rect x="472" y="276" width="150" height="30" fill="#04121A" stroke="#3FE0EE" stroke-opacity=".6"/><circle cx="488" cy="291" r="4" fill="#6CF2B0"/><text x="500" y="295" fill="#D9F7FB">TAURI 2 + RUST</text></g>
+    <g class="chip b"><rect x="634" y="276" width="140" height="30" fill="#04121A" stroke="#3FE0EE" stroke-opacity=".6"/><circle cx="650" cy="291" r="4" fill="#6CF2B0"/><text x="662" y="295" fill="#D9F7FB">LOCAL ONLY</text></g>
+    <g class="chip c"><rect x="786" y="276" width="160" height="30" fill="#04121A" stroke="#3FE0EE" stroke-opacity=".6"/><circle cx="802" cy="291" r="4" fill="#FFB547"/><text x="814" y="295" fill="#D9F7FB">7.5 MB ON DISK</text></g>
+  </g>
+  <text x="472" y="342" class="m" font-size="11" fill="#6E9AA6" letter-spacing="3">ARC REACTOR ONLINE · LATTICE 152 NODES · ALL SYSTEMS NOMINAL</text>
+</svg>
